@@ -6,28 +6,28 @@ class TasksModel extends ChangeNotifier {
 
   Future<void> fetchItems() async {
     items = await DbHelper.tasks();
-    // print(await DbHelper.tasks());
     notifyListeners();
   }
 
-  void add(String title) async {
+  Future<void> add(String title, {bool test = false}) async {
     final task = Task(DateTime.now().millisecondsSinceEpoch, title, 0);
     items.add(task);
     notifyListeners();
-    DbHelper.insertTask(task);
-    // print(await DbHelper.tasks());
+    // Since we are not running test on any real device we cannot access the
+    // path to database
+    if (!test) {
+      await DbHelper.insertTask(task);
+    }
   }
 
-  // void remove(Item item) {
-  //   _items.remove(item);
-  //   notifyListeners();
-  // }
-
-  void updateStatus(int id, int isCompleted) async {
+  Future<void> updateStatus(int id, int isCompleted,
+      {bool test = false}) async {
     Task item = items.firstWhere((element) => element.id == id);
     item.isCompleted = isCompleted;
     notifyListeners();
-    await DbHelper.updateTask(item);
+    if (!test) {
+      await DbHelper.updateTask(item);
+    }
   }
 }
 
@@ -37,7 +37,6 @@ class Task {
   int isCompleted; // SQLite does not support bool
 
   Task(this.id, this.title, this.isCompleted);
-  // Task({required this.id, required this.title, required this.isCompleted});
 
   // Convert a Task into a Map. The keys must correspond to the names of the
   // columns in the database.

@@ -15,10 +15,10 @@ class CreateTaskModal extends StatefulWidget {
 class _CreateTaskModalState extends State<CreateTaskModal> {
   late final TextEditingController _controller;
 
-  void _saveTask() {
+  void _saveTask() async {
     if (_controller.text.isEmpty) return;
     var tasks = context.read<TasksModel>();
-    tasks.add(_controller.text);
+    await tasks.add(_controller.text);
     _controller.clear();
     const snackBar = SnackBar(
       duration: Duration(milliseconds: 1000),

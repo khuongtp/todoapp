@@ -1,16 +1,20 @@
-# tododapp
+# TODO App
 
-A new Flutter project.
+An app where you can manage your tasks.
 
-## Getting Started
+## About this project
 
-This project is a starting point for a Flutter application.
+* This project is written in Flutter.
+* Having an “Create task” UI to create a new Todo.
+* Each Todo has a checkbox, to change its status between complete and incomplete.
+* Created tasks is persisted in SQLite database.
 
-A few resources to get you started if this is your first Flutter project:
+## How to run the code?
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+* You must have Flutter installed and configured properly for Android or iOS.
+* Run ```flutter pub get``` in the root folder of the project.
+* Run ```flutter run```.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Unit testing
+
+Run ```flutter test test/models/taks_test.dart``` in the root folder of the project.

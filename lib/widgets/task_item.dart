@@ -32,9 +32,9 @@ class _TaskItemState extends State<TaskItem>
             ),
           ),
           value: isChecked,
-          onChanged: (value) {
+          onChanged: (value) async {
             var tasks = context.read<TasksModel>();
-            tasks.updateStatus(widget.item.id, value! ? 1 : 0);
+            await tasks.updateStatus(widget.item.id, value! ? 1 : 0);
             setState(() {
               isChecked = value;
             });

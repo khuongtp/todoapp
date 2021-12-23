@@ -23,12 +23,8 @@ final database = getDatabasesPath().then(
 
 class DbHelper {
   static Future<void> insertTask(Task task) async {
+    WidgetsFlutterBinding.ensureInitialized();
     final db = await database;
-
-    // Insert the Task into the correct table. You might also specify the
-    // `conflictAlgorithm` to use in case the same task is inserted twice.
-    //
-    // In this case, replace any previous data.
     await db.insert(
       'tasks',
       task.toMap(),
